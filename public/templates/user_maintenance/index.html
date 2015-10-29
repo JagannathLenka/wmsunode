@@ -1,0 +1,149 @@
+        <div id="UserMasterListCtrl" class="maintenance_screen_div">
+          <div>
+            <h3><a href="/user_master_maintenance"><span class="label label-primary">User Master</span></a></h3>
+          </div>
+          <div class="input-group pull-right" style="width: 30%" >
+                        <span class="input-group-addon">
+                            <span class="dropdown" dropdown on-toggle="toggled(open)">
+                              <a href class="dropdown-toggle" dropdown-toggle>
+                                {{search_choice.text || 'Select'}}
+                              </a>
+                              <ul class="dropdown-menu">
+                                <li ng-repeat="choice in search_items" ng-click="choose(choice)">
+                                  <a href>{{choice.text}}</a>
+                                </li>
+                              </ul>
+                            </span>
+                        </span>	
+            <input type="text" ng-model="query" ng-keydown="search($event, search_choice.value)" class="form-control" placeholder="Search" typeahead="item for item in item_list | filter:$viewValue | limitTo:8">
+            <span class="input-group-addon"><i class="icon-search"></i></span>
+          </div>
+
+
+          <tabset>
+            <tab heading="Active" select="status('*All')"></tab>
+            <tab heading="Inactive" select="status('Inactive')"></tab>
+          </tabset>
+
+          <div style="width: 100%">
+            <div style="float: left; width: {{squeeze}}%">
+	            <div class="row-header">
+	              <div class="col-header">
+	                Option
+	              </div>
+	              <div class="col-header truncate">
+	                User Id<a ng-click="sort_by('user_id')"><i class="fa fa-sort"></i></a>
+	              </div>
+	              <div class="col-header truncate">
+	                User Name<a ng-click="sort_by('user_name')"><i class="fa fa-sort"></i></a>
+	              </div>
+	              <div class="col-header truncate">
+	                Preferred Warehouse<a ng-click="sort_by('preferred_warehouse')"><i class="fa fa-sort"></i></a>
+	              </div>
+	              <div class="col-header truncate">
+	                Auth Action<a ng-click="sort_by('enable')"><i class="fa fa-sort"></i></a>
+	              </div>
+	              <div class="col-header truncate">
+	                  <a id="add_user_header" href="#user_master_maintenance/add"> <i class="icon-plus-sign"></i></a>
+	              </div>
+	            </div>
+                	
+                <div ng-repeat="item in pagedItems[currentPage]">
+                    <div  class="row-detail">
+                      <div class="col-header" ng-click="toggleExpand(item)" >
+                        <i class="{{item.show ? 'fa fa-caret-down fa-lg' : 'fa fa-caret-right fa-lg'}}" style="color:#428bca"></i></a>
+                      </div>
+
+                      <div class="col-header truncate">
+                        {{item.user_header.user_id}}
+                      </div>
+                      <div class="col-header truncate">
+                        {{item.user_header.user_name}}
+                      </div>
+                      <div class="col-header truncate">
+                        {{item.user_header.preferred_warehouse}}
+                      </div>
+                      <div class="col-header truncate">
+                        {{item.user_header.authorized_action}}
+                      </div>
+
+                      <div class="icon-header pull-right">
+                        <a id="show_item" ng-click="showUser('Header', item.user_header.id)">
+                          <i class="fa fa-chevron-right"></i>
+                        </a>
+                      </div>
+                   </div>
+
+                    <!--Detail -->
+                    <div id="detail" ng-show="item.show" style="padding-left: 0%">
+                      <div class="label label-default">
+                        <div class="col-header">
+                          Inner Pack Qty
+                        </div>
+                        <div class="col-header">
+                          Inner Pack Weight
+                        </div>
+                        <div class="col-header">
+                          Inner Pack Height
+                        </div>
+                        <div class="col-header">
+                          <a id="open_shipment_detail_add" ng-click="item_detail_add_modal('lg', item.item_header.id)">
+                            <i class="icon-plus-sign"></i>
+                          </a>
+                        </div>
+                      </div>
+                      
+                      <div ng-repeat="detail in item.item_inner_pack" class="bs-callout">
+                        <div class="col-header">
+                          {{detail.innerpack_qty}}
+                        </div>
+                        <div class="col-header">
+                          {{detail.innerpack_wgt}}
+                        </div>
+                        <div class="col-header">
+                          {{detail.innerpack_hgt}}
+                        </div>
+                        <div class="icon-header pull-right">
+                          <a id="show_item_detail" ng-click="showItem('Detail', item.user_header.id,  detail.id)">
+                            <i class="fa fa-chevron-right"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+				  </div>	
+                
+                <div id="footer">
+                  <div>
+                    <ul class="pagination pull-right">
+                      <li ng-class="{disabled: currentPage == 0}">
+                        <a href ng-click="prevPage()">« Prev</a>
+                      </li>
+                      <li ng-repeat="n in range(pagedItems.length)"
+                          ng-class="{active: n == currentPage}"
+                          ng-click="setPage()">
+                        <a href ng-bind="n + 1">1</a>
+                      </li>
+                      <li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+                        <a href ng-click="nextPage()">Next »</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+             </div>   
+
+
+          <div  style="float: left;width: {{expand}}%" ng-show = "header.show">
+            <div>
+	            <div>
+	              <button class="btn btn-default" style="float: left; margin-top: 1%; margin: 1%" ng-click="hideUser()">User Master</button>
+	            </div>
+	            <div>
+	              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="hideUser()"><i class="fa fa-times"></i> </button>
+	            </div>
+	            <div>
+	              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="editUser(selected_header_id)"><i class="fa fa-pencil"></i> </button>
+	            </div>
+            </div>
+            <div ng-include src="header_template.url" class="card"></div>
+          </div>
+        </div>

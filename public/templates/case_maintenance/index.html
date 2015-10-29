@@ -1,0 +1,166 @@
+    <div id="CaseListCtrl"  class="maintenance_screen_div">
+
+			<div>
+				<h3>
+                  <a href="/case"> <span class="label label-primary">Case List</span></a>
+                </h3>
+			</div>
+			<div class="input-group pull-right" style="width: 30%">
+				<span class="input-group-addon">
+                  <span class="dropdown" dropdown on-toggle="toggled(open)">
+				      <a href class="dropdown-toggle" dropdown-toggle>
+                        {{search_choice.text || 'Select'}}
+                      </a>
+				      <ul class="dropdown-menu">
+                        <li ng-repeat="choice in search_items" ng-click="choose(choice)">
+                          <a href>{{choice.text}}</a>
+                        </li>
+                      </ul>
+				    </span>
+                </span>
+              <input id="query" type="text" ng-model="query" ng-keydown="search($event, search_choice.value)" class="form-control" placeholder="Search" typeahead="case for case in case_list | filter:$viewValue | limitTo:8">
+              <span class="input-group-addon"><i class="icon-search"></i></span>
+            </div>
+
+
+              <tabset>
+                <tab heading="Created" select="status('Created')"></tab>
+                <tab heading="Received" select="status('Received')"></tab>
+                <tab heading="In Progress" select="status('Receiving in Progress')"></tab>
+                <tab heading="Verified" select="status('Verified')"></tab>
+              </tabset>
+
+          <div style="width: 100%">
+            <div style="float: left; width: {{squeeze}}%">
+       
+				<div class="row-header">
+					<div class="col-header truncate">
+						Option
+					</div>
+					<div class="col-header truncate">
+						Case Id&nbsp;<a ng-click="sort_by('case_id')"><i class="fa fa-sort"></i></a>
+					</div>
+					<div class="col-header truncate">
+						Shipment Number&nbsp;<a ng-click="sort_by('shipment_nbr')"><i class="fa fa-sort"></i></a>
+					</div>
+					<div class="col-header truncate">
+						Location<a ng-click="sort_by('vendor_nbr')"><i class="fa fa-sort"></i></a>
+					</div>
+					<div class="col-header truncate">
+						Record Status&nbsp;<a ng-click="sort_by('record_status')"><i class="icon-sort"></i></a>
+					</div>
+					<div class="col-header truncate">
+						<a id="add_case_header"  href="#case_maintenance/add/header"> <i class="icon-plus-sign"></i></a>
+					</div>
+
+            	</div>
+            			
+				<div ng-repeat="item in pagedItems[currentPage]">
+					<div  class="row-detail">
+                      <div class="col-header" ng-click="toggleExpand(item)" >
+                        <i class="{{item.show ? 'fa fa-caret-down fa-lg' : 'fa fa-caret-right fa-lg'}}" style="color:#428bca"></i></a>
+                      </div>
+						<div class="col-header">
+							{{item.case_header.case_id}}
+						</div>
+						<div class="col-header">
+							{{item.case_header.shipment_nbr}}
+						</div>
+						<div class="col-header">
+							{{item.case_header.location}}
+						</div>
+						<div class="col-header">
+							{{item.case_header.record_status}}
+						</div>
+                      <div class="icon-header pull-right">
+                        <a id="show_case" ng-click="showCase('Header', item.case_header.id)">
+                          <i class="fa fa-chevron-right"></i>
+                        </a>
+                      </div>
+				</div>
+
+                <!--Detail -->
+				<div ng-show="item.show" style="padding-left: 0%">
+					<div class="label label-default">
+						<div class="col-header">
+                          Item
+                        </div>
+						<div class="col-header truncate">
+							Shipped Quantity
+						</div>
+						<div class="col-header truncate">
+							Received Quantity
+						</div>
+						<div class="col-header">
+                          <a id="open_case_detail_add" href="#case_maintenance/add/detail/{{item.case_header.id}}">
+                            <i class="icon-plus-sign"></i>
+                          </a>
+                        </div>
+					</div>
+							
+					<div ng-repeat="detail in item.case_detail" class="bs-callout">
+						<div class="col-header">
+							{{detail.item}}
+						</div>
+						<div class="col-header">
+							{{detail.quantity}}
+						</div>
+						<div class="col-header">
+							{{detail.coo}}
+						</div>
+                      <div class="icon-header pull-right">
+                        <a id="open_shipment_detail" ng-click="showCase('Detail', item.case_header.id,  detail.id)">
+                          <i class="fa fa-chevron-right"></i>
+                        </a>
+                      </div>
+                    </div>
+				</div>
+			</div>
+
+				<div>	
+					<div>
+						<ul class="pagination pull-right">
+							<li ng-class="{disabled: currentPage == 0}">
+								<a href ng-click="prevPage()">« Prev</a>
+							</li>
+							<li ng-repeat="n in range(pagedItems.length)"
+							ng-class="{active: n == currentPage}"
+							ng-click="setPage()">
+								<a href ng-bind="n + 1">1</a>
+							</li>
+							<li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+								<a href ng-click="nextPage()">Next »</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+		    </div>
+          </div>
+
+          <div style="float: left; width: {{expand}}%" ng-show = "header.show">
+            <div>
+              <button class="btn btn-default" style="float: left; margin-top: 1%; margin: 1%" ng-click="hideCase()">Case Header</button>
+            </div>
+            <div>
+              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="hideCase()"><i class="fa fa-times"></i> </button>
+            </div>
+            <div>
+              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="editCase(selected_header_id)"><i class="fa fa-pencil"></i> </button>
+            </div>
+            <div ng-include src="header_template.url" class="card"></div>
+          </div>
+
+
+          <div style="float: left; width: {{expand}}%" ng-show = "detail.show">
+            <div>
+              <button class="btn btn-default" style="float: left; margin-top: 1%; margin: 1%" ng-click="hideCase()">Case Detail </button>
+            </div>
+            <div>
+              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="hideCase()"><i class="fa fa-times"></i> </button>
+            </div>
+            <div>
+              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="editCase(selected_header_id, selected_detail_id)"><i class="fa fa-pencil"></i> </button>
+            </div>
+            <div ng-include src="detail_template.url" class="card"></div>
+          </div>
+        </div>

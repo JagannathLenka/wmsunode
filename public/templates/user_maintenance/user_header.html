@@ -1,0 +1,59 @@
+<div class="btn-default">
+    <div ng-show="globalInfo.error" class="bg-danger" style="width: 100%; height: 30px">
+        Error:{{global_notification}}
+    </div>
+    <div ng-show="globalInfo.info" class="bg-info" style="width: 100%; height: 30px">
+        {{global_notification}}
+    </div>
+</div>
+
+<div class="btn-default">
+    <div class="modal_text_box">
+        <span class="title truncate"> User Id:</span>
+        <a href="#" id="user_id" e-name="user_id" editable-text="user_header.user_id" onbeforesave="updateHeader($data, this, user_header.id)">{{
+            user_header.user_id || "empty" }}</a>
+    </div>
+    <div class="modal_text_box">
+        <span class="title truncate">User Name:</span>
+        <a href="#" id="user_name" e-name="description" editable_text="user_header.user_name"
+           onbeforesave="updateHeader($data, this, user_header.id)" e-required>{{ user_header.user_name || "empty" }}</a>
+    </div>
+    <div class="modal_text_box">
+        <span class="title truncate">Password:</span>
+        <a href="#" id="password" e-name="password" editable_text="user_header.password"
+           onbeforesave="updateHeader($data, this, user_header.id)" e-required>{{ user_header.password || "empty" }}</a>
+    </div>
+    <div class="modal_text_box">
+        <span class="title truncate">Preferred Warehouse:</span>
+        <a href="#" id="preferred_warehouse" e-name="preferred_warehouse" editable_select="user_header.preferred_warehouse"
+           e-ng-options="s.value as s.text for s in warehouse"
+           onbeforesave="updateHeader($data, this, user_header.id)" e-required>{{ user_header.preferred_warehouse || "empty" }}</a>
+    </div>
+        <div class="modal_text_box">
+        <span class="title truncate">Authorized Warehouse:</span>
+        <a href="#" id="authorized_warehouse" e-name="authorized_warehouse" editable_select="user_header.authorized_warehouse"
+           e-ng-options="s.value as s.text for s in warehouse"
+           onbeforesave="updateHeader($data, this, user_header.id)" e-required>{{ user_header.authorized_warehouse || "empty" }}</a>
+    </div>
+        </div>
+        <div class="modal_text_box">
+        <span class="title truncate">Authorized Action:</span>
+        <a href="#" id="authorized_action" e-name="authorized_action" editable_select="user_header.authorized_action"
+           e-ng-options="s.value as s.text for s in roles"
+           onbeforesave="updateHeader($data, this, user_header.id)" e-required>{{ user_header.authorized_action || "empty" }}</a>
+    </div>
+
+</div>
+&nbsp;
+
+<div style="width: 100%; margin-top: 2%">
+
+    <accordion close-others="oneAtATime">
+
+        <accordion-group heading="More...." is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+            <accordion-group heading="User Detail....">              
+            </accordion-group>
+        </accordion-group>
+    </accordion>
+
+</div>

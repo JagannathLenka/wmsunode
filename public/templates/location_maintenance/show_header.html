@@ -1,0 +1,39 @@
+<body>
+
+<div class="modal-header">
+    <button type="button" class="btn btn-primary">
+        Wahrehouse :
+    </button>
+    {{location_header.warehouse || "WH1"}}
+    <button type="button" class="btn btn-primary">
+        Client:
+    </button>
+    {{location_header.client || "WM"}}
+    <button type="button" class="btn btn-primary">
+        Shipment:
+    </button>
+    {{location_header.item||"New Location"}}
+    <button class="btn btn-primary" ng-click="ok()" style="float: right">
+        <i class="fa fa-times" style="float: right"></i>
+    </button>
+
+</div>
+</div>
+
+<div class="modal-body">
+
+
+    <accordion close-others="oneAtATime">
+
+        <accordion-group heading="Location Header" is-open=true>
+            <div ng-include src="header_template.url"></div>
+        </accordion-group>
+
+    </accordion>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">Exit</button>
+</div>
+
+
+</body>

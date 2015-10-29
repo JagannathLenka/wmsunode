@@ -1,0 +1,196 @@
+<div class="btn-default">
+    <div ng-show="globalInfo.error" class="bg-danger" style="width: 100%; height: 30px">
+        Error:{{global_notification}}
+    </div>
+    <div ng-show="globalInfo.info" class="bg-info" style="width: 100%; height: 30px">
+        {{global_notification}}
+    </div>
+</div>
+
+<div class="btn-default">
+    <div class="modal_text_box">
+        <span class="title truncate"> Area:</span>
+        <a href="#" id="area" e-name="area" editable_select="location_header.area"
+           e-ng-options="s.value as s.text for s in areas"
+           onbeforesave="updateHeader($data, this, location_header.id)" e-required>{{ location_header.area || "empty" }}</a>
+    </div>
+    <div class="modal_text_box">
+        <span class="title truncate">Zone:</span>
+        <a href="#" id="zone" e-name="zone" editable_select="location_header.zone"
+           e-ng-options="s.value as s.text for s in zones"
+           onbeforesave="updateHeader($data, this, location_header.id)" e-required>{{ location_header.zone || "empty" }}</a>
+    </div>
+        <div class="modal_text_box">
+        <span class="title truncate">Aisle:</span>
+        <a href="#" id="aisle" e-name="aisle" editable_select="location_header.aisle"
+           e-ng-options="s.value as s.text for s in aisles"
+           onbeforesave="updateHeader($data, this, location_header.id)" e-required>{{ location_header.aisle || "empty" }}</a>
+    </div>
+    <div class="modal_text_box">
+        <span class="title truncate">Bay:</span>
+        <a href="#" id="bay" e-name="bay" editable_select="location_header.bay"
+           e-ng-options="s.value as s.text for s in bays"
+           onbeforesave="updateHeader($data, this, location_header.id)" e-required>{{ location_header.bay || "empty" }}</a>
+    </div>
+    <div class="modal_text_box">
+        <span class="title truncate">Level:</span>
+        <a href="#" id="level" e-name="level" editable_select="location_header.level"
+           e-ng-options="s.value as s.text for s in levels"
+           onbeforesave="updateHeader($data, this, location_header.id)" e-required>{{ location_header.level || "empty" }}</a>
+    </div>
+    <div class="modal_text_box">
+        <span class="title truncate">Position:</span>
+        <a href="#" id="position" e-name="position" editable_select="location_header.position"
+           e-ng-options="s.value as s.text for s in positions"
+           onbeforesave="updateHeader($data, this, location_header.id)" e-required>{{ location_header.position || "empty" }}</a>
+    </div>    
+    <div class="modal_text_box">
+        <span class="title truncate truncate">Barcode:</span>
+        <a href="#" id="barcode" e-name="barcode" editable-text="location_header.barcode" onbeforesave="updateHeader($data, this, location_header.id)">{{ location_header.barcode || "empty" }}</a>
+    </div>
+    <div class="modal_text_box">
+        <span class="title truncate">Location Type: </span>
+        <a href="#" id="location_type" editable_text="location_header.location_type" e-step="any"
+           onbeforesave="updateHeader($data, this, location_header.id)">{{ location_header.location_type || "empty" }}</a>
+    </div>
+                
+</div>
+&nbsp;
+
+<div style="width: 100%; margin-top: 2%">
+
+    <accordion close-others="oneAtATime">
+
+        <accordion-group heading="More...." is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+            <accordion-group heading="Location Properties....">
+                <div class="modal_text_box">
+                    <span class="title truncate">Preffered Pallate Type: </span>
+                    <a href="#" id="preffered_pallet_type" editable_text="location_header.preffered_pallet_type" e-step="any"
+                       onbeforesave="updateHeader($data, this, location_header.id)">{{ location_header.preffered_pallet_type || "empty" }}</a>
+                </div>
+                
+                 <div class="modal_text_box">
+                    <span class="title truncate">Preffered Case Type: </span>
+                    <a href="#" id="preffered_case_type" editable_text="location_header.preffered_case_type" e-step="any"
+                       onbeforesave="updateHeader($data, this, location_header.id)">{{ location_header.preffered_case_type || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title truncate">Default Putaway Type: </span>
+                    <a href="#" id="defalt_putaway_type" editable_number="location_header.defalt_putaway_type" e-step="any"
+                       onbeforesave="updateHeader($data, this, location_header.id)">{{location_header.defalt_putaway_type || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title truncate">Secured Location Type: </span>
+                    <a href="#" id="secured_locn_type" editable_text="location_header.secured_locn_type" e-step="any"
+                       onbeforesave="updateHeader($data, this, location_header.id)">{{location_header.secured_locn_type || "empty" }}</a>
+                </div>                
+                <div class="modal_text_box">
+                    <span class="title truncate">Climate Control: </span>
+                    <a href="#" id="climate_control" editable_text="location_header.climate_control" e-step="any"
+                       onbeforesave="updateHeader($data, this, location_header.id)">{{ location_header.climate_control || "empty" }}</a>
+                </div>
+			    <div class="modal_text_box">
+			        <span class="title truncate">Lot Control Only:</span>
+			        <a href="#" id="lot_control_only" e-name="lot_control_only" editable_select="location_header.lot_control_only"
+			           e-ng-options="s.value as s.text for s in YesorNo"
+			           onbeforesave="updateHeader($data, this, location_header.id)" e-required>{{ location_header.lot_control_only || "empty" }}</a>
+			    </div>   
+			    <div class="modal_text_box">
+			        <span class="title truncate">Serial Number Only:</span>
+			        <a href="#" id="serial_nbr_only" e-name="serial_nbr_only" editable_select="location_header.serial_nbr_only"
+			           e-ng-options="s.value as s.text for s in YesorNo"
+			           onbeforesave="updateHeader($data, this, location_header.id)" e-required>{{ location_header.serial_nbr_only || "empty" }}</a>
+			    </div>                
+			    <div class="modal_text_box">
+			        <span class="title truncate">Single SKU Location:</span>
+			        <a href="#" id="single_sku_locn" e-name="serial_nbr_only" editable_select="location_header.single_sku_locn"
+			           e-ng-options="s.value as s.text for s in YesorNo"
+			           onbeforesave="updateHeader($data, this, location_header.id)" e-required>{{ location_header.single_sku_locn || "empty" }}</a>
+			    </div>                 
+			    <div class="modal_text_box">
+			        <span class="title truncate">Dedicated SKU Location:</span>
+			        <a href="#" id="dedicated_sku_locn" e-name="serial_nbr_only" editable_select="location_header.dedicated_sku_locn"
+			           e-ng-options="s.value as s.text for s in YesorNo"
+			           onbeforesave="updateHeader($data, this, location_header.id)" e-required>{{ location_header.dedicated_sku_locn || "empty" }}</a>
+			    </div>                 
+                
+            </accordion-group>
+
+            <accordion-group heading="Location Dimension....">
+                <div class="modal_text_box">
+                    <span class="title truncate">Minimum Temperature: </span>
+                    <a href="#" id="minimum_temp" editable_number="location_header.minimum_temp" e-step="any"
+                       onbeforesave="updateHeader($data, this, location_header.id)">{{ location_header.minimum_temp || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title truncate">Maximum Temperature: </span>
+                    <a href="#" id="maximum_temp" editable_number="location_header.maximum_temp" e-step="any"
+                       onbeforesave="updateHeader($data, this, location_header.id)">{{ location_header.maximum_temp|| "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title truncate">Location Length: </span>
+                    <a href="#" id="length" editable-number="location_header.length"
+                       onbeforesave="updateHeader($data, this, location_header.id)">{{ location_header.length || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title truncate">Location Width: </span>
+                    <a href="#" id="width" editable-number="location_header.width"
+                       onbeforesave="updateHeader($data, this, location_header.id)">{{ location_header.width || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title truncate">Location Height: </span>
+                    <a href="#" id="height" editable-number="location_header.height"
+                       onbeforesave="updateHeader($data, this, location_header.id)">{{ location_header.height || "empty" }}</a>
+                </div>
+                 <div class="modal_text_box">
+                    <span class="title truncate">Volume: </span>
+                    <a href="#" id="volume" editable-number="location_header.volume"
+                       onbeforesave="updateHeader($data, this, location_header.id)">{{ location_header.volume || "empty" }}</a>
+                </div>
+
+            </accordion-group>
+
+            <accordion-group heading="Location Tollerance....">
+                <div class="modal_text_box">
+                    <span class="title truncate">Maximum Weight: </span>
+                    <a href="#" id="maximum_wgt" editable-number="location_header.maximum_wgt"
+                       onbeforesave="updateHeader($data, this, location_header.id)">{{ location_header.maximum_wgt || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title truncate">Minimum Temperature: </span>
+                    <a href="#" id="minimum_temp" editable_number="location_header.minimum_temp" e-step="any"
+                       onbeforesave="updateHeader($data, this, location_header.id)">{{ location_header.minimum_temp || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title truncate">Maximum Temperature: </span>
+                    <a href="#" id="maximum_temp" editable_number="location_header.maximum_temp" e-step="any"
+                       onbeforesave="updateHeader($data, this, location_header.id)">{{ location_header.maximum_temp|| "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title truncate">Maximum Cases: </span>
+                    <a href="#" id="maximum_cases" editable_number="location_header.maximum_cases" e-step="any"
+                       onbeforesave="updateHeader($data, this, location_header.id)">{{ location_header.maximum_cases|| "empty" }}</a>
+                </div>
+				<div class="modal_text_box">
+                    <span class="title truncate">Minimum Units: </span>
+                    <a href="#" id="minimum_units" editable_number="location_header.minimum_units" e-step="any"
+                       onbeforesave="updateHeader($data, this, location_header.id)">{{ location_header.minimum_units|| "empty" }}</a>
+                </div>
+				<div class="modal_text_box">
+                    <span class="title truncate">Maximum Units: </span>
+                    <a href="#" id="maximum_units" editable_number="location_header.maximum_units" e-step="any"
+                       onbeforesave="updateHeader($data, this, location_header.id)">{{ location_header.minimum_units|| "empty" }}</a>
+                </div>
+				<div class="modal_text_box">
+                    <span class="title truncate">Maximum Units: </span>
+                    <a href="#" id="maximum_units" editable_number="location_header.maximum_units" e-step="any"
+                       onbeforesave="updateHeader($data, this, location_header.id)">{{ location_header.minimum_units|| "empty" }}</a>
+                </div>
+																				
+
+            </accordion-group>
+
+        </accordion-group>
+    </accordion>
+
+</div>

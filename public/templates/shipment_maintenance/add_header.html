@@ -1,0 +1,61 @@
+<body>
+
+<div class="modal-header">
+    <button type="button" class="btn btn-primary">
+        Client:
+    </button>
+    {{shipment_header.client}}
+    <button type="button" class="btn btn-primary">
+    	Wahrehouse :
+	</button>
+    {{shipment_header.warehouse}}
+    <button type="button" class="btn btn-primary">
+        Shipment:
+    </button>
+    	New Shipment
+    <button class="btn btn-primary" ng-click="ok()" style="float: right">
+        <i class="fa fa-times" style="float: right"></i>
+    </button>
+</div>
+
+
+<div class="modal-body">
+
+    <form editable-form name="editableForm" onaftersave="saveHeader()">
+        <div class="buttons">
+            <!-- button to show form -->
+            {{editableForm.$show()}}
+
+            <!-- buttons to submit / cancel form -->
+            <span ng-show="editableForm.$visible">
+                <button type="submit" class="btn btn-info" ng-disabled="editableForm.$waiting">
+                    Save
+                </button>
+                <button type="button" class="btn btn-warning" ng-disabled="editableForm.$waiting"
+                        ng-click="editableForm.$cancel()">
+                    Cancel
+                </button>
+            </span>
+        </div>
+
+        <div ng-include src="header_template.url"></div>
+            <span ng-show="editableForm.$visible">
+                <button type="submit" class="btn btn-info" ng-disabled="editableForm.$waiting">
+                    Save
+                </button>
+                <button type="button" class="btn btn-warning" ng-disabled="editableForm.$waiting"
+                        ng-click="editableForm.$cancel()">
+                    Cancel
+                </button>
+            </span>
+
+    </form>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()" style="float: right">
+        Exit
+    </button>
+</div>
+
+</body>

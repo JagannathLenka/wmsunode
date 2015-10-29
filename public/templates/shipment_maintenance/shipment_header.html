@@ -1,0 +1,501 @@
+
+    <div class="btn-default">
+        <div ng-show="globalInfo.error" class="bg-danger" style="width: 100%; height: 30px">
+            Error:{{global_notification}}
+        </div>
+        <div ng-show="globalInfo.info" class="bg-info" style="width: 100%; height: 30px">
+            {{global_notification}}
+        </div>
+    </div>
+
+    <div class="btn-default">
+        <div class="modal_text_box">
+            <span class="title truncate"> Shipment Number:</span>
+            <a href="#" id="shipment_nbr" e-name="shipment_nbr" editable-text="shipment_header.shipment_nbr"
+               onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.shipment_nbr || "empty"
+                }}</a>
+        </div>
+        <div class="modal_text_box">
+            <span class="title truncate">ASN Type:</span><a href="#" id="asn_type" e-name="asn_type"
+                                                   editable_select="shipment_header.asn_type"
+                                                   e-ng-options="s.value as s.text for s in AsnType"
+                                                   onbeforesave="updateHeader($data, this, shipment_header.id)" e-required>{{
+            shipment_header.asn_type || "empty" }}</a>
+        </div>
+        <div class="modal_text_box">
+            <span class="title truncate">Record Status:</span><a href="#" id="record_status" e-name="record_status"
+                                                        editable_select="shipment_header.record_status"
+                                                        e-ng-options="s.value as s.text for s in statuses"
+                                                        onbeforesave="updateHeader($data, this, shipment_header.id)"
+                                                        e-required>{{ shipment_header.record_status || "Created" }}</a>
+        </div>
+        <div class="modal_text_box">
+            <span class="title truncate">Purchase Order No:</span><a href="#" id="purchase_order_nbr" e-name="purchase_order_nbr"
+                                                            editable-text="shipment_header.purchase_order_nbr"
+                                                            onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+            shipment_header.purchase_order_nbr || "empty" }}</a>
+        </div>
+        <div class="modal_text_box">
+            <span class="title truncate">Hot Item PO:</span><a href="#" id="hot_item_po" e-name="hot_item_po"
+                                                      editable_select="shipment_header.hot_item_po"
+                                                      e-ng-options="s.value as s.text for s in YesorNo"
+                                                      onbeforesave="updateHeader($data, this, shipment_header.id)"
+                                                      e-required>{{ shipment_header.hot_item_po || '' }} </a>
+        </div>
+        <div class="modal_text_box">
+            <span class="title truncate">Source:</span><a href="#" id="source" e-name="source" editable-text="shipment_header.source"
+                                                 onbeforesave="updateHeader($data, this, shipment_header.id)" e-required>{{
+            shipment_header.source || "empty" }}</a>
+        </div>
+        <div class="modal_text_box">
+            <span class="title truncate">Appointment Nbr:</span><a href="#" id="appointment_nbr" e-name="appointment_nbr"
+                                                          editable_text="shipment_header.appointment_nbr"
+                                                          onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+            shipment_header.appointment_nbr || "empty" }}</a>
+        </div>
+        <div class="modal_text_box">
+            <span class="title truncate">Auto cancel PO:</span><a href="#" id="auto_cancel_po" e-name="auto_cancel_po"
+                                                         editable_select="shipment_header.auto_cancel_po"
+                                                         e-ng-options="s.value as s.text for s in YesorNo"
+                                                         onbeforesave="updateHeader($data, this, shipment_header.id)"
+                                                         e-required>{{ shipment_header.auto_cancel_po || "Not set" }}</a>
+        </div>
+        <div class="modal_text_box">
+            <span class="title truncate">COO:</span><a href="#" id="coo" e-name="coo" editable_text="shipment_header.coo"
+                                              onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+            shipment_header.coo || "empty" }}</a>
+        </div>
+        <div class="modal_text_box">
+            <span class="title truncate">Shipment Verified:</span><a href="#" id="shipment_verified" e-name="shipment_verified">{{
+            shipment_header.shipment_verified|| "No" }}</a>
+        </div>
+    </div>
+    &nbsp;
+
+    <div style="width: 100%">
+
+        <accordion close-others="oneAtATime">
+
+            <accordion-group heading="More...." is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+                <accordion-group heading="Vendor Information....">
+                    <div class="modal_text_box">
+                        <span class="title truncate">Vendor Number: </span><a href="#" id="vendor_nbr"
+                                                                     editable-text="shipment_header.vendor_nbr"
+                                                                     onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.vendor_nbr || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Vendor Name: </span><a href="#" id="vendor_name"
+                                                                   editable_text="shipment_header.vendor_name"
+                                                                   onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.vendor_name || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Vendor Factory: </span><a href="#" id="vendor_factory"
+                                                                      editable_text="shipment_header.vendor_factory"
+                                                                      onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.vendor_factory || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Vendor Contact: </span><a href="#" id="vendor_contact"
+                                                                      editable_text="shipment_header.vendor_contact"
+                                                                      onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.vendor_contact || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Ship From: </span><a href="#" id="ship_form"
+                                                                 editable_text="shipment_header.ship_form"
+                                                                 onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.ship_form || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Vendor EmailID: </span><a href="#" id="vendor_email_id"
+                                                                      editable_text="shipment_header.vendor_email_id"
+                                                                      onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.vendor_email_id || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Phone: </span><a href="#" id="phone" editable_tel="shipment_header.phone"
+                                                             onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.phone }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Fax Number: </span><a href="#" id="fax_nbr"
+                                                                  editable_text="shipment_header.fax_nbr"
+                                                                  onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.fax_nbr || "empty" }}</a>
+                    </div>
+                </accordion-group>
+
+                <accordion-group heading="Buyer Information....">
+
+                    <div class="modal_text_box">
+                        <span class="title truncate">Buyer ID: </span><a href="#" id="buyer_id"
+                                                                editable-text="shipment_header.buyer_id"
+                                                                onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.buyer_id || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Buyer Name: </span><a href="#" id="buyer_name"
+                                                                  editable_text="shipment_header.buyer_name"
+                                                                  onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.buyer_name || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Department: </span><a href="#" id="department"
+                                                                  editable_text="shipment_header.department"
+                                                                  onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.department || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span></span> EmailID: </span><a href="#" id="buyer_email_id"
+                                                         editable_text="shipment_header.buyer_email_id"
+                                                         onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.buyer_email_id || "empty" }}</a>
+                    </div>
+                </accordion-group>
+
+                <accordion-group heading="Date Information....">
+                    <div class="modal_text_box">
+                        <span class="title truncate">Created Date: </span><a href="#" id="po_created_date"
+                                                                    editable-date="shipment_header.po_created_date"
+                                                                    onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.po_created_date || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Ship Date: </span><a href="#" id="po_ship_date"
+                                                                 editable_date="shipment_header.po_ship_date"
+                                                                 onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.po_ship_date || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Last Modified By: </span><a href="#" id="po_last_modified_by"
+                                                                        editable_text="shipment_header.po_last_modified_by"
+                                                                        onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.po_last_modified_by || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Last Modifified Date: </span><a href="#" id="po_last_modified_date"
+                                                                            editable_date="shipment_header.hot_item_po"
+                                                                            onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.hot_item_po || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Downloaded By: </span><a href="#" id="po_downloaded_by"
+                                                                     editable-text="shipment_header.po_downloaded_by"
+                                                                     onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.po_downloaded_by || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Downloaded Date: </span><a href="#" id="po_downloaded_date"
+                                                                       editable_text="shipment_header.po_downloaded_date"
+                                                                       onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.appointment_nbr || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Cancel After Days: </span><a href="#" id="cancel_after_days"
+                                                                         editable_text="shipment_header.cancel_after_days"
+                                                                         onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.cancel_after_days || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Cancelled By: </span><a href="#" id="po_cancelled_by"
+                                                                    editable_text="shipment_header.po_cancelled_by"
+                                                                    onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.po_cancelled_by || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Cancelled Date: </span><a href="#" id="po_cancelled_date"
+                                                                      editable_date="shipment_header.po_cancelled_date"
+                                                                      onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.po_cancelled_date || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Shipment Verified By: </span><a href="#" id="shipment_verified_by"
+                                                                            editable_text="shipment_header.shipment_verified_by"
+                                                                            onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.shipment_verified_by || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Shipment Verified Date: </span><a href="#" id="shipment_verified_date"
+                                                                              editable_date="shipment_header.shipment_verified_date"
+                                                                              onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.shipment_verified_date || "empty" }}</a>
+                    </div>
+                </accordion-group>
+
+                <accordion-group heading="Tracking Information....">
+                    <div class="modal_text_box">
+                        <span class="title truncate">Track COO: </span><a href="#" id="track_coo"
+                                                                 editable-select="shipment_header.track_coo"
+                                                                 e-ng-options="s.value as s.text for s in YesorNo"
+                                                                 onbeforesave="updateDetail($data, this, shipment_header.id)">{{
+                        shipment_header.track_coo || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Track LOC Control: </span><a href="#" id="track_lotcontrol"
+                                                                         editable-select="shipment_header.track_lotcontrol"
+                                                                         e-ng-options="s.value as s.text for s in YesorNo"
+                                                                         onbeforesave="updateDetail($data, this, shipment_header.id)">{{
+                        shipment_header.track_lotcontrol || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Track Serial Number: </span><a href="#" id="track_serial_nbr"
+                                                                           editable-select="shipment_header.track_serial_nbr"
+                                                                           e-ng-options="s.value as s.text for s in YesorNo"
+                                                                           onbeforesave="updateDetail($data, this, shipment_header.id)">{{
+                        shipment_header.track_serial_nbr || "empty" }}</a>
+                    </div>
+                </accordion-group>
+
+                <accordion-group heading="Receiving Information....">
+                    <div class="modal_text_box">
+                        <span class="title truncate">PO Ship Date: </span><a href="#" id="po_ship_date"
+                                                                    editable-date="shipment_header.po_ship_date"
+                                                                    onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.po_ship_date || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Mode Of Transport: </span><a href="#" id="mode_of_transport"
+                                                                         editable_text="shipment_header.mode_of_transport"
+                                                                         onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.mode_of_transport || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Receiving Started Date: </span><a href="#" id="receiving_stated_date"
+                                                                              onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.receiving_stated_date || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">First Receiving By: </span><a href="#" id="first_receiving_by"
+                                                                          onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.first_receiving_by || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Area: </span><a href="#" id="area"
+                                                            onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.area || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Receiving Ended Date: </span><a href="#" id="receiving_ended_date"
+                                                                            editable_date="shipment_header.receiving_ended_date"
+                                                                            onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.receiving_ended_date || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Receiving Ended By: </span><a href="#" id="receiving_ended_by"
+                                                                          editable_text="shipment_header.receiving_ended_by"
+                                                                          onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.receiving_ended_by || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Dock Door: </span><a href="#" id="door_door"
+                                                                 onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.door_door || "empty" }}</a>
+                    </div>
+                </accordion-group>
+
+                <accordion-group heading="Totals Information....">
+
+                    <div class="modal_text_box">
+                        <span class="title truncate">Total Units: </span><a href="#" id="total_units"
+                                                                   onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.total_units || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Cases Ordered: </span><a href="#" id="cases_ordered"
+                                                                     onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.cases_ordered || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Total Weight: </span><a href="#" id="total_weight"
+                                                                    onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.total_weight || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Total Volume: </span><a href="#" id="total_volume"
+                                                                    onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.total_volume || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Units Received: </span><a href="#" id="units_rcvd"
+                                                                      onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.units_rcvd || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Cases Received: </span><a href="#" id="cases_rcvd"
+                                                                      onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.cases_rcvd || "empty" }}</a>
+                    </div>
+                </accordion-group>
+
+                <accordion-group heading="QA Information....">
+                    <div class="modal_text_box">
+                        <span class="title truncate">QA Sampling Plan: </span><a href="#" id="qa_samplling_plan"
+
+                                                                        onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.qa_samplling_plan || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Override QA Plan: </span><a href="#" id="override_qa_plan"
+                                                                        editable_text="shipment_header.override_qa_plan"
+                                                                        onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.override_qa_plan || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Override Plan: </span><a href="#" id="overided_plan"
+                                                                     editable_text="shipment_header.overided_plan"
+                                                                     onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.overided_plan || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Total Units IN QA: </span><a href="#" id="total_units_in_qa"
+
+                                                                         onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.total_units_in_qa || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Total Cases IN QA: </span><a href="#" id="total_cases_in_qa"
+
+                                                                         onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.total_cases_in_qa || "empty" }}</a>
+                    </div>
+                </accordion-group>
+
+                <accordion-group heading="Hold Information....">
+                    <div class="modal_text_box">
+                        <span class="title truncate">Hold Inventory: </span><a href="#" id="hold_inventory"
+                                                                      editable_checkbox="shipment_header.hold_inventory"
+                                                                      onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.hold_inventory || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Hold Code: </span><a href="#" id="hold_code"
+                                                                 editable_text="shipment_header.hold_code"
+                                                                 onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.hold_code || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Alert Buyer: </span><a href="#" id="alert_buyer"
+                                                                   editable_checkbox="shipment_header.alert_buyer"
+                                                                   onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.alert_buyer || "empty" }}</a>
+                    </div>
+                </accordion-group>
+
+                <accordion-group heading="Carrier Information....">
+                    <div class="modal_text_box">
+                        <span class="title truncate">Ship Via: </span><a href="#" id="ship_via"
+                                                                editable-text="shipment_header.ship_via"
+                                                                onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.ship_via || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Trailor Type: </span><a href="#" id="trailor_type"
+                                                                    editable_text="shipment_header.trailor_type"
+                                                                    onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.trailor_type || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Manifest No: </span><a href="#" id="manifest_nbr"
+                                                                   editable_text="shipment_header.manifest_nbr"
+                                                                   onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.manifest_nbr || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">BOL: </span><a href="#" id="bol" editable_text="shipment_header.bol"
+                                                           onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.bol || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Seal No: </span><a href="#" id="seal_nbr"
+                                                               editable_text="shipment_header.seal_nbr"
+                                                               onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.seal_nbr || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">SCAC Code: </span><a href="#" id="scac_code"
+                                                                 editable_text="shipment_header.scac_code"
+                                                                 onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.scac_code || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Order No: </span><a href="#" id="order_nbr"
+                                                                editable_text="shipment_header.order_nbr"
+                                                                onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.order_nbr || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Order Type: </span><a href="#" id="order_type"
+                                                                  editable_text="shipment_header.order_type"
+                                                                  onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.order_type || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Source Comment:</span><a href="#" id="source_comment"
+                                                                     editable_text="shipment_header.source_comment"
+                                                                     onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.source_comment || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Comments: </span><a href="#" id="comments"
+                                                                editable_text="shipment_header.comments"
+                                                                onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.comments || "empty" }}</a>
+                    </div>
+                </accordion-group>
+
+                <accordion-group heading="Audit Information....">
+                    <div class="modal_text_box">
+                        <span class="title truncate">Created Date: </span><a href="#" id="created_date"
+
+                                                                    onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.created_date || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Created User: </span><a href="#" id="created_user"
+                                                                    onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.created_user || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Created Prc: </span><a href="#" id="created_prc"
+
+                                                                   onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.created_prc || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Created At: </span><a href="#" id="created_at"
+
+                                                                  onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.created_at || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Updated Date: </span><a href="#" id="updated_date"
+
+                                                                    onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.updated_date || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Updated User: </span><a href="#" id="updated_user"
+                                                                    onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.updated_user || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Updated Prc: </span><a href="#" id="updated_prc"
+
+                                                                   onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.updated_prc || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title truncate">Updated At: </span><a href="#" id="updated_at"
+
+                                                                  onbeforesave="updateHeader($data, this, shipment_header.id)">{{
+                        shipment_header.updated_at || "empty" }}</a>
+                    </div>
+
+                </accordion-group>
+
+            </accordion-group>
+        </accordion>
+
+    </div>

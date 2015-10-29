@@ -1,0 +1,96 @@
+<div class="btn-default">
+    <div ng-show="globalInfo.error" class="bg-danger" style="width: 100%; height: 30px">
+        Error:{{global_notification}}
+    </div>
+    <div ng-show="globalInfo.info" class="bg-info" style="width: 100%; height: 30px">
+        {{global_notification}}
+    </div>
+</div>
+
+<div class="btn-default">
+    <div class="modal_text_box">
+        <span class="title truncate truncate"> Module:</span>
+        <a href="#" id="module" e-name="configuration_header.module" editable-text="configuration_header.module" onbeforesave="updateHeader($data, this, configuration_header.id)">{{
+            configuration_header.module || "empty" }}</a>
+    </div>
+
+    <div class="modal_text_box">
+        <span class="title truncate"> Description:</span>
+        <a href="#" id="module_description" e-name="configuration_header.module_description" editable-text="configuration_header.module_description" onbeforesave="updateHeader($data, this, configuration_header.id)">{{
+            configuration_header.module_description || "empty" }}</a>
+    </div>
+
+    <div class="modal_text_box">
+        <span class="title truncate"> Sub Module1:</span>
+        <a href="#" id="submodule1" e-name="configuration_header.submodule1" editable-text="configuration_header.submodule1" onbeforesave="updateHeader($data, this, configuration_header.id)">{{
+            configuration_header.submodule1 || "empty" }}</a>
+    </div>
+
+    <div class="modal_text_box">
+        <span class="title truncate"> Sub Module2:</span>
+        <a href="#" id="submodule2" e-name="configuration_header.submodule2" editable-text="configuration_header.submodule2" onbeforesave="updateHeader($data, this, configuration_header.id)">{{
+            configuration_header.submodule2 || "empty" }}</a>
+    </div>
+
+    <div class="modal_text_box">
+        <span class="title truncate"> Sub Module3:</span>
+        <a href="#" id="submodule3" e-name="configuration_header.submodule2" editable-text="configuration_header.submodule2" onbeforesave="updateHeader($data, this, configuration_header.id)">{{
+            configuration_header.submodule3 || "empty" }}</a>
+    </div>
+
+    <div class="modal_text_box">
+        <span class="title truncate"> Sub Module4:</span>
+        <a href="#" id="submodule4" e-name="configuration_header.submodule4" editable-text="configuration_header.submodule4" onbeforesave="updateHeader($data, this, configuration_header.id)">{{
+            configuration_header.submodule4 || "empty" }}</a>
+    </div>
+
+    <div class="modal_text_box">
+        <span class="title truncate"> Sub Module5:</span>
+        <a href="#" id="submodule5" e-name="configuration_header.submodule5" editable-text="configuration_header.submodule5" onbeforesave="updateHeader($data, this, configuration_header.id)">{{
+            configuration_header.submodule5 || "empty" }}</a>
+    </div>
+
+    <div class="modal_text_box">
+        <span class="title truncate"> Key:</span>
+        <a href="#" id="key" e-name="configuration_header.key" editable-text="configuration_header.key" onbeforesave="updateHeader($data, this, configuration_header.id)">{{
+            configuration_header.key || "empty" }}</a>
+    </div>
+
+    <div class="modal_text_box">
+        <span class="title truncate">Value:</span>
+        <a href="#" id="value" e-name="configuration_header.value" editable_select="configuration_header.value"
+           onshow="loadGroups(configuration_header.attribute1)" e-ng-options="s.value as s.text for s in options"
+           onbeforesave="updateHeader($data, this, configuration_header.id)" e-required>{{ configuration_header.value || "empty" }}</a>
+    </div>
+
+    <div class="modal_text_box">
+        <span class="title truncate"> Options:</span>
+        <a href="#" id="attribute1" e-name="configuration_header.attribute1" editable-text="configuration_header.attribute1" onbeforesave="updateHeader($data, this, configuration_header.id)">{{
+            configuration_header.attribute1 || "empty" }}</a>
+    </div>
+
+    <div class="modal_text_box">
+        <span class="title truncate">Status:</span>
+        <a href="#" id="status" e-name="status" editable_select="configuration_header.status"
+           e-ng-options="s.value as s.text for s in statuses"
+           onbeforesave="updateHeader($data, this, configuration_header.id)" e-required>{{ configuration_header.status || "empty" }}</a>
+    </div>
+
+</div>
+&nbsp;
+
+<div style="width: 100%; margin-top: 2%">
+
+    <accordion close-others="oneAtATime">
+
+        <accordion-group heading="More...." is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+            <accordion-group heading="More Info....">
+            </accordion-group>
+
+            <accordion-group heading="More Info....">
+            </accordion-group>
+
+        </accordion-group>
+    </accordion>
+
+</div>

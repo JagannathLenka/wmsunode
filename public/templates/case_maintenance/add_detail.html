@@ -1,0 +1,66 @@
+
+<div class="modal-header">
+	<button type="button" class="btn btn-primary">
+        Client:
+    </button>
+    {{case_detail.client}}
+    <button type="button" class="btn btn-primary">
+        Wahrehouse :
+    </button>
+    {{case_detail.warehouse}}
+    <button type="button" class="btn btn-primary">
+        Shipment:
+    </button>
+    {{case_detail.case_id}}
+    <button class="btn btn-primary" ng-click="ok()" style="float: right">
+        <i class="fa fa-times" style="float: right"></i>
+    </button>
+
+</div>
+	
+	<div class="modal-body">
+
+		<form editable-form name="editableForm" onaftersave="saveDetail()">
+			<div class="buttons">
+                {{editableForm.$show()}}
+                <!-- buttons to submit / cancel form -->
+                <span ng-show="editableForm.$visible">
+                    <button type="submit" class="btn btn-info" ng-disabled="editableForm.$waiting">
+                        Save
+                    </button>
+                    <button type="button" class="btn btn-warning" ng-disabled="editableForm.$waiting"
+                        ng-click="editableForm.$cancel()">
+                        Cancel
+                    </button>
+                </span>
+			</div>
+
+            <div class="modal-body">
+
+                <accordion close-others="oneAtATime">
+
+                    <accordion-group heading="Case Detail" is-open=true>
+                        <div ng-include src="detail_template.url"></div>
+                    </accordion-group>
+                </accordion>
+
+            </div>
+                <span ng-show="editableForm.$visible">
+                    <button type="submit" class="btn btn-info" ng-disabled="editableForm.$waiting">
+                        Save
+                    </button>
+                    <button type="button" class="btn btn-warning" ng-disabled="editableForm.$waiting"
+                            ng-click="editableForm.$cancel()">
+                        Cancel
+                    </button>
+                </span>
+		</form>
+	</div>
+
+	<div class="modal-footer">
+		<button class="btn btn-primary" ng-click="ok()">
+			Exit
+		</button>
+	</div>
+
+

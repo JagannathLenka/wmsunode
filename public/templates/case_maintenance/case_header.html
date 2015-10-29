@@ -1,0 +1,125 @@
+<div class="btn-default">
+    <div ng-show="globalInfo.error" class="bg-danger" style="width: 100%; height: 30px">
+        Error:{{global_notification}}
+    </div>
+    <div ng-show="globalInfo.info" class="bg-info" style="width: 100%; height: 30px">
+        {{global_notification}}
+    </div>
+</div>
+
+<div class="btn-default">
+    <div class="modal_text_box">
+        <span class="title"> Case:</span>
+        <a href="#" id="case_id" e-name="case_id" editable-text="case_header.case_id"
+           onbeforesave="updateHeader($data, this, case_header.id)">{{ case_header.case_id || "empty" }}</a>
+    </div>
+    <div class="modal_text_box">
+        <span class="title">Inventory Type:</span><a href="#" id="inventory_type" e-name="asn_type"
+                                                     editable_text="case_header.inventory_type"
+                                                     onbeforesave="updateHeader($data, this, case_header.id)">{{
+        case_header.inventory_type || "empty" }}</a>
+    </div>
+    <div class="modal_text_box">
+        <span class="title">Record Status:</span><a href="#" id="record_status" e-name="record_status"
+                                                    editable_select="case_header.record_status"
+                                                    e-ng-options="s.value as s.text for s in statuses"
+                                                    onbeforesave="updateHeader($data, this, case_header.id)" e-required>{{
+        case_header.record_status || "Created" }}</a>
+    </div>
+    <div class="modal_text_box">
+        <span class="title">Location Type:</span><a href="#" id="location_type" e-name="location_type"
+                                                    editable_text="case_header.location_type"
+                                                    onbeforesave="updateHeader($data, this, case_header.id)">{{
+        case_header.location_type || "empty" }}</a>
+    </div>
+    <div class="modal_text_box">
+        <span class="title">Purchase Order:</span><a href="#" id="purchase_order_nbr" e-name="purchase_order_nbr"
+                                                     editable_text="case_header.purchase_order_nbr"
+                                                     onbeforesave="updateHeader($data, this, case_header.id)">{{
+        case_header.purchase_order_nbr || "empty" }}</a>
+    </div>
+    <div class="modal_text_box">
+        <span class="title">Shipment:</span><a href="#" id="shipment_nbr" e-name="shipment_nbr"
+                                               editable_text="case_header.shipment_nbr"
+                                               onbeforesave="updateHeader($data, this, case_header.id)">{{
+        case_header.shipment_nbr || "empty" }}</a>
+    </div>
+
+    <div class="modal_text_box">
+        <span class="title">On Hold:</span><a href="#" id="on_hold" e-name="on_hold"
+                                              editable_select="case_header.on_hold"
+                                              e-ng-options="s.value as s.text for s in YesorNo"
+                                              onbeforesave="updateHeader($data, this, case_header.id)">{{
+        case_header.on_hold || 'Not set' }} </a>
+    </div>
+    <div class="modal_text_box">
+        <span class="title">Hold Code:</span><a href="#" id="hold_code" e-name="hold_code"
+                                                editable_text="case_header.hold_code"
+                                                onbeforesave="updateHeader($data, this, case_header.id)">{{
+        case_header.hold_code || 'Not set' }} </a>
+    </div>
+
+</div>
+&nbsp;
+
+<div style="width: 100%">
+
+    <accordion close-others="oneAtATime">
+
+        <accordion-group heading="More...." is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+            <accordion-group heading="Location Information...">
+
+                <div class="panel-body">
+                    <div class="modal_text_box">
+                        <span class="title">Location Type:</span><a href="#" id="location_type"
+                                                                    e-name="location_type"
+                                                                    editable_text="case_header.location_type"
+                                                                    onbeforesave="updateHeader($data, this, case_header.id)">{{
+                        case_header.location_type || "empty" }}</a>
+                    </div>
+                    <div class="modal_text_box">
+                        <span class="title">Pallet:</span><a href="#" id="pallet_id"
+                                                                    e-name="pallet_id"
+                                                                    editable_text="case_header.pallet_id"
+                                                                    onbeforesave="updateHeader($data, this, case_header.id)">{{
+                        case_header.pallet_id || "empty" }}</a>
+                    </div>
+
+                    <div class="modal_text_box">
+                        <span class="title">Location:</span><a href="#" id="location" e-name="location"
+                                                               editable_text="case_header.location"
+                                                               onbeforesave="updateHeader($data, this, case_header.id)">{{
+                        case_header.location || 'Not set' }} </a>
+                    </div>
+                </div>
+            </accordion-group>
+
+            <accordion-group heading="Vendor Information...">
+                <div class="modal_text_box">
+                    <span class="title">Vendor:</span><a href="#" id="vendor_nbr" e-name="vendor_nbr"
+                                                         editable_text="case_header.vendor_nbr"
+                                                         onbeforesave="updateHeader($data, this, case_header.id)">{{
+                    case_header.vendor_nbr || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Vendor Factory:</span><a href="#" id="vendor_factory"
+                                                                 e-name="vendor_factory"
+                                                                 editable_text="case_header.vendor_factory"
+                                                                 onbeforesave="updateHeader($data, this, case_header.id)">{{
+                    case_header.vendor_factory || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">COO:</span><a href="#" id="coo" e-name="coo"
+                                                      editable_text="case_header.coo"
+                                                      onbeforesave="updateHeader($data, this, case_header.id)">{{
+                    case_header.coo || "empty" }}</a>
+                </div>
+
+            </accordion-group>
+
+    </accordion-group>
+
+   </accordion>
+</div>
+
+

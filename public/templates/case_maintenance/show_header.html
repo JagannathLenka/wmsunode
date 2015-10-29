@@ -1,0 +1,45 @@
+
+<div class="modal-header">
+	<button type="button" class="btn btn-primary">
+        Client:
+    </button>
+    {{case_header.client}}
+    <button type="button" class="btn btn-primary">
+        Wahrehouse :
+    </button>
+    {{case_header.warehouse}}
+    <button type="button" class="btn btn-primary">
+        Shipment:
+    </button>
+    {{case_header.case_id}}
+    <button class="btn btn-primary" ng-click="ok()" style="float: right">
+        <i class="fa fa-times" style="float: right"></i>
+    </button>
+
+</div>
+
+
+<div class="modal-body">
+
+
+    <accordion close-others="oneAtATime">
+
+        <accordion-group heading="Case Header" is-open=true>
+            <div ng-include src="header_template.url"></div>
+        </accordion-group>
+
+        <accordion-group heading="Case Detail">
+            <header ng-repeat-start="case_detail in shipment_details">
+                <accordion-group heading="Item: {{shipment_detail.item}}">
+                    <div ng-include src="detail_template.url"></div>
+                </accordion-group>
+            </header>
+            <header ng-repeat-end>
+            </header>
+        </accordion-group>
+    </accordion>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">Exit</button>
+</div>
+

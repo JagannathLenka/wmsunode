@@ -1,0 +1,29 @@
+
+		<div class="modal_text_box">
+            <span class="title truncate">Client:</span><a href="#" id="client" e-name="client"
+                                                   editable_select="app_parameters.client"
+                                                   e-ng-options="s.value as s.text for s in clients"
+                                                   onbeforesave="updateHeader($data, this, shipment_header.id)" e-required>{{
+            app_parameters.client || "empty" }}</a>
+		</div>
+        <div class="modal_text_box">
+            <span class="title truncate">Warehouse:</span><a href="#" id="warehouse" e-name="warehouse"
+                                                   editable_select="app_parameters.warehouse"
+                                                   e-ng-options="s.value as s.text for s in warehouses"
+                                                   onbeforesave="updateHeader($data, this, shipment_header.id)" e-required>{{
+            app_parameters.warehouse || "empty" }}</a>
+        </div>
+        <div class="modal_text_box">
+            <span class="title truncate">Building:</span><a href="#" id="building" e-name="building"
+                                                   editable_select="app_parameters.building"
+                                                   e-ng-options="s.value as s.text for s in Building"
+                                                   onbeforesave="updateHeader($data, this, shipment_header.id)" e-required>{{
+            app_parameters.building || "empty" }}</a>
+        </div>
+        <div class="modal_text_box">
+            <span class="title truncate">Channel:</span><a href="#" id="channel" e-name="channel"
+                                                   editable_select="app_parameters.channel"
+                                                   e-ng-options="s.value as s.text for s in Channel"
+                                                   onbeforesave="updateHeader($data, this, shipment_header.id)" e-required>{{
+            app_parameters.channel || "empty" }}</a>
+        </div>

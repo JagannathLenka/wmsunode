@@ -1,0 +1,184 @@
+
+        <div id="ShipmentListCtrl"  class="maintenance_screen_div">
+			<div>
+				<h3><a href="/shipment_maintenance"><span class="label label-primary">Shipment List</span></a></h3>
+			</div>
+			<div class="input-group pull-right" style="width: 30%" >
+				<span class="input-group-addon">    
+				    <span class="dropdown" dropdown on-toggle="toggled(open)">
+				      <a href class="dropdown-toggle" dropdown-toggle>
+				        {{search_choice.text || 'Select'}}
+				      </a>
+				      <ul class="dropdown-menu">
+				        <li ng-repeat="choice in search_items" ng-click="choose(choice)">
+				          <a href>{{choice.text}}</a>
+				        </li>
+				      </ul>
+				    </span>
+				 </span>   
+				<input type="text" ng-model="query" ng-keydown="search($event, search_choice.value)" class="form-control" placeholder="Search" typeahead="shipment for shipment in shipment_list | filter:$viewValue | limitTo:8">
+				<span class="input-group-addon"><i class="icon-search"></i></span>
+			</div>
+
+
+          <tabset>
+            <tab id="created" heading="Created" select="status('Created')"></tab>
+            <tab id="intiated" heading="Initiated" select="status('Initiated')"></tab>
+            <tab heading="In Progress" select="status('Receiving in Progress')"></tab>
+            <tab heading="Verified" select="status('Verified')"></tab>
+          </tabset>
+
+          <div style="width: 100%">
+            <div style="float: left; width: {{squeeze}}%">
+			<div id="table">
+				<div id="head" >
+					<div>
+						<div class="row-header">
+							<div class="col-header">
+								Option
+							</div>
+							<div class="col-header truncate">
+								Shipment Number<a ng-click="sort_by('shipment_nbr')"><i class="fa fa-sort"></i></a>
+							</div>
+							<div class="col-header truncate">
+								Order Qty<a ng-click="sort_by('unit_ordered')"><i class="fa fa-sort"></i></a>
+							</div>
+							<div class="col-header truncate">
+								Received Qty<a ng-click="sort_by('units_rcvd')"><i class="fa fa-sort"></i></a>
+							</div>
+							<div class="col-header truncate">
+								Purchase Order<a ng-click="sort_by('purchase_order_nbr')"><i class="fa fa-sort"></i></a>
+							</div>
+							<div class="col-header truncate">
+								Record Status<a ng-click="sort_by('record_status')"></a>
+							</div>
+							
+							<div class="col-header truncate">
+								<a id="add_shipment_header" href="#shipment_maintenance/add/header"> <i class="icon-plus-sign"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="tbody">
+					<div ng-repeat="item in pagedItems[currentPage]">
+						<div  class="row-detail">
+							<div id="shipment_header" class="col-header" ng-click="toggleExpand(item)" >
+                              <i class="{{item.show ? 'fa fa-caret-down fa-lg' : 'fa fa-caret-right fa-lg'}}" style="color:#428bca"></i></a>
+							</div>
+
+							<div class="col-header">
+								{{item.shipment_header.shipment_nbr}}
+							</div>
+							<div class="col-header">
+								{{item.shipment_header.unit_ordered}}
+							</div>
+							<div class="col-header">
+								{{item.shipment_header.units_rcvd}}
+							</div>
+							<div class="col-header">
+								{{item.shipment_header.purchase_order_nbr}}
+							</div>
+							<div class="col-header">
+								{{item.shipment_header.record_status}}
+							</div>
+							<div class="col-header pull-right">
+		                        <a id="show_shipment_header" ng-click="showShipment('Header', item.shipment_header.id)">
+        		                  <i class="fa fa-chevron-right"></i>
+                		        </a>
+							</div>
+
+						</div>
+
+                          <!--Detail -->
+						<div ng-show="item.show" style="padding-left: 2%">
+							<div class="label label-default">
+								<div class="col-header">
+									Item
+								</div>
+								<div class="col-header truncate">
+									Shipped Quantity
+								</div>
+								<div class="col-header truncate">
+									Received Quantity
+								</div>
+								<div class="col-header">
+									<a id="add_shipment_detail" href="#shipment_maintenance/add/detail/{{item.shipment_header.id}}">
+										<i class="icon-plus-sign"></i>
+									</a>									
+								</div>
+
+							</div>
+							<div ng-repeat="detail in item.shipment_detail">
+                                <div class="row-detail" id="shipment_detail">
+								    <div class="col-header">
+									    {{detail.item}}
+							    	</div>
+								    <div class="col-header">
+									    {{detail.shipped_quantity}}
+								    </div>
+								    <div class="col-header">
+									    {{detail.received_qty}}
+								    </div>
+								    <div class="icon-header pull-right">
+								    	 <a id="show_shipment_detail" ng-click="showShipment('Detail', item.shipment_header.id,  detail.id)">
+        		                  			<i class="fa fa-chevron-right"></i>
+                		        		</a>
+						        	</div>
+                                </div>
+							</div>
+						</div>
+          
+					</div>
+
+				</div>
+				<div id="tfoot">
+					<div>
+						<ul class="pagination pull-right">
+							<li ng-class="{disabled: currentPage == 0}">
+								<a href ng-click="prevPage()">« Prev</a>
+							</li>
+							<li ng-repeat="n in range(pagedItems.length)"
+							ng-class="{active: n == currentPage}"
+							ng-click="setPage()">
+								<a href ng-bind="n + 1">1</a>
+							</li>
+							<li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+								<a href ng-click="nextPage()">Next »</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+          </div>
+        </div>
+
+
+          <div style="float: left;width: {{expand}}%" ng-show = "header.show">
+            <div>
+              <button class="btn btn-default" style="float: left; margin-top: 1%; margin: 1%" ng-click="hideShipment()">Shipment Header </button>
+            </div>
+            <div>
+              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="hideShipment()"><i class="fa fa-times"></i> </button>
+            </div>
+             <div>
+             <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="editShipment(selected_header_id)"><i class="fa fa-pencil"></i> </button>
+            </div>
+            <div ng-include src="header_template.url" class="card"></div>
+          </div>
+
+          
+         <div style="float: left; width: {{expand}}%" ng-show = "detail.show">
+           <div>
+             <button class="btn btn-default" style="float: left; margin-top: 1%; margin: 1%" ng-click="hideShipment()">Shipment Detail </button>
+           </div>
+            <div>
+              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="hideShipment()"><i class="fa fa-times"></i> </button>
+            </div>
+             <div>
+              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="editShipment(selected_header_id, selected_detail_id)"><i class="fa fa-pencil"></i></button>
+             </div>
+            <div ng-include src="detail_template.url" class="card"></div>
+          </div>
+
+        </div>

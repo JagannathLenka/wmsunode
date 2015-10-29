@@ -1,0 +1,38 @@
+
+<body>
+
+	 <div class="modal-header">
+         <button type="button" class="btn btn-primary">
+             Client:
+         </button>
+         {{shipment_detail.client}}
+         <button type="button" class="btn btn-primary">
+             Wahrehouse :
+         </button>
+         {{shipment_detail.warehouse}}
+         <button type="button" class="btn btn-primary">
+             Item:
+         </button>
+         {{shipment_detail.barcode}}
+         <button class="btn btn-primary" ng-click="ok()" style="float: right"><i class="fa fa-caret-square-o-left fa-lg"></i>
+
+         </button>
+
+     </div>
+
+
+         <div class="modal-body">
+
+             <accordion close-others="oneAtATime">
+
+                 <accordion-group heading="Shipment Detail" is-open=true>
+                     <div ng-include src="detail_template.url"></div>
+                 </accordion-group>
+             </accordion>
+
+         </div>
+         <div class="modal-footer">
+             <button class="btn btn-primary" ng-click="ok()">Exit</button>
+         </div>
+
+    </body>
