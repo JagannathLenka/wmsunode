@@ -7,7 +7,7 @@ var http = require('http');
 router.get('/:id', function(req, response, next) {
   
   var optionsget = {
-    host : 'localhost', // here only the domain name
+    host : 'wmsservice.herokuapp.com', // here only the domain name
     port : 3001,
     method : 'GET' // do GET
   };
