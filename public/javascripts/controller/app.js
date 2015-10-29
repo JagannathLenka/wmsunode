@@ -192,7 +192,7 @@ wms.run(function($rootScope, $state, $localStorage, $location, Auth) {
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
        if(! $localStorage.token) {
 
-         window.location = '/login'
+         //window.location = '/login'
     	}
     	
     	});
