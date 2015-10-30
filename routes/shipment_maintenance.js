@@ -1,5 +1,8 @@
 var express = require('express');
+var config  = require('../config/config.js')
+
 var router = express.Router();
+
 
 var request = require('request');
 
@@ -8,7 +11,7 @@ var request = require('request');
 
     token = req.headers['authorization']
 
-    request('http://localhost:3001/shipment?client=WM&warehouse=WH1&authorization=' + token, function (error, response, body) {
+    request(config.serviceUrl() +  '/shipment?client=WM&warehouse=WH1&authorization=' + token, function (error, response, body) {
     if (!error && response.statusCode == 200) { 
       res.json(JSON.parse(body));
     }
@@ -19,7 +22,7 @@ var request = require('request');
 router.get('/:id', function(req, response, next) {
   
 
-  request('http://localhost:3001/shipment/' +  req.params.id + '/?client=WM&warehouse=WH1&authorization=' + token, function (error, response, body) {
+  request(config.serviceUrl() + 'shipment/' +  req.params.id + '/?client=WM&warehouse=WH1&authorization=' + token, function (error, response, body) {
     if (!error && response.statusCode == 200) { 
       res.json(JSON.parse(body));
     }

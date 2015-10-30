@@ -1,6 +1,7 @@
 var express = require('express');
-var router = express.Router();
+var config  = require('../config/config.js')
 
+var router = express.Router();
 var request = require('request');
 
   /* GET home page. */
@@ -8,7 +9,7 @@ var request = require('request');
 
     token = req.headers['authorization']
 
-    request('http://localhost:3001/case?client=WM&warehouse=WH1&authorization=' + token, function (error, response, body) {
+    request(config.serviceUrl() +'/case?client=WM&warehouse=WH1&authorization=' + token, function (error, response, body) {
     if (!error && response.statusCode == 200) { 
       res.json(JSON.parse(body));
     }
@@ -18,8 +19,7 @@ var request = require('request');
 
 router.get('/:id', function(req, response, next) {
   
-
-  request('http://localhost:3001/case/' +  req.params.id + '/?client=WM&warehouse=WH1&authorization=' + token, function (error, response, body) {
+  request(config.serviceUrl() + '/case/' +  req.params.id + '/?client=WM&warehouse=WH1&authorization=' + token, function (error, response, body) {
     if (!error && response.statusCode == 200) { 
       res.json(JSON.parse(body));
     }

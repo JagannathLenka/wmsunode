@@ -1,4 +1,5 @@
 var express = require('express');
+var config  = require('../config/config.js')
 var router = express.Router();
 
 var request = require('request');
@@ -14,7 +15,7 @@ router.post('/', function(req, res, next) {
 
 	user_details = {user_details: {client: client, user_id: userid, password: password}}
 
-	request({url:'http://localhost:3001/authenticate/signin', form: user_details, method: 'POST'}, function(error,response,body){
+	request({url: config.serviceUrl() +'/authenticate/signin', form: user_details, method: 'POST'}, function(error,response,body){
     	if (!error ) { 
       		res.json(JSON.parse(body));
 	    }	
