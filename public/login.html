@@ -1,0 +1,65 @@
+<html>
+<head>
+  <link data-turbolinks-track="false" href="/style/grid.css?body=1" media="all" rel="stylesheet" />
+  <link data-turbolinks-track="false" href="/style/lib/bootstrap-3.2.0/bootstrap-theme.css?body=1" media="all" rel="stylesheet" />
+  <link data-turbolinks-track="false" href="/style/lib/bootstrap-3.2.0/bootstrap.css?body=1" media="all" rel="stylesheet" />
+  <link data-turbolinks-track="false" href="/style/lib/bootstrap-3.2.0/font-awesome.css?body=1" media="all" rel="stylesheet" />
+  <link data-turbolinks-track="false" href="/style/lib/bootstrap-3.2.0/glyphicons.css?body=1" media="all" rel="stylesheet" />
+  <link data-turbolinks-track="false" href="/style/lib/xeditable-0.1.8/xeditable.css?body=1" media="all" rel="stylesheet" />
+  <script data-turbolinks-track="false" src="/js/lib/angular-1.3.15/angular-min.js?body=1"></script>
+  <script data-turbolinks-track="false" src="/js/lib/angular-1.3.15/angular-route.js?body=1"></script>
+  <script data-turbolinks-track="false" src="/js/lib/angular-storage-0.3.0/angular-storage.js?body=1"></script>
+  <script data-turbolinks-track="false" src="/js/lib/angular-ui-router-0.2.8/angular-ui-router.min.js?body=1"></script>
+  <script data-turbolinks-track="false" src="/js/lib/bootstrap_angular-0.12.0/bootstrap.angular.js?body=1"></script>
+  <script data-turbolinks-track="false" src="/js/lib/xeditable-0.1.8/xeditable.min.js?body=1"></script>
+  <script data-turbolinks-track="false" src="/js/controller/app.js?body=1"></script>
+  <script data-turbolinks-track="false" src="/js/controller/angular-wmsui-factory.js?body=1"></script>
+  <script data-turbolinks-track="false" src="/js/controller/login/login.js?body=1"></script>
+
+  <meta content="authenticity_token" name="csrf-param" />
+  <meta content="J/BKJcfgk1BggHnDnA4jDigi5PzoGFZ4A9KZJHfocPA=" name="csrf-token" />
+</head>
+
+<body ng-app="login" ng-controller="LoginCtrl" ng-keypress="($event.charCode==13)?login():return">
+
+
+
+<div id="LoginCtrl" class="maintenance_screen_div">
+
+  <div class="centered">
+    <h3><span>Warehouse Management System</span></h3>
+  </div>
+
+  <div class="login-box">
+
+    <h3>
+      <header><span>Sign In</span></header>
+    </h3>
+    <div id="message" style="margin-bottom: 5%">
+      <span class="label label-danger">{{message}}</span>
+    </div>
+
+    <h5><span>User Id</span></h5>
+
+    <input id="userid" type="text" class="form-control" placeholder="Username" ng-model="userid">
+
+    <h5><span>Password</span></h5>
+
+    <div style="margin-bottom: 10%">
+      <input id="password" type="password" class="form-control" placeholder="Password" ng-model="password">
+    </div>
+
+    <div style="margin-bottom: 5%">
+        <input type="checkbox"><span> Remember Me</span>
+    </div>
+    <button id="login" class="btn btn-primary"  ng-click="login()">Sign In</button>
+
+
+
+
+  </div>
+
+</div>
+
+</body>
+</html>

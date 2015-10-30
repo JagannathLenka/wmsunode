@@ -9,13 +9,12 @@ login.controller('LoginCtrl', function ($scope, $location, $localStorage, $http,
 	
     var url = '/login'
     return $http.post(url, {
-    	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
     	 userid: $scope.userid,
          password: $scope.password
     }).success(function(data){
 		$localStorage.token = data['additional_info'][0]['token']
 		delete $localStorage.app_parameters
-        window.location = '/main';
+        window.location = '/main.html';
     }).error(function(message){
         $scope.message = 'Invalid User Id or Password';
     });

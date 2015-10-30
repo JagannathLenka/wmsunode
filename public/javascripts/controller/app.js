@@ -10,13 +10,13 @@ wms.run(function(editableOptions) {
 // configure our routes
 wms.config(function($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise('/main');
+    $urlRouterProvider.otherwise('/main.html');
 
     $stateProvider
     
         // route for the shipment page
         .state('main', {
-            url:         '/main'
+            url:         '/main.html'
         })
         
 //===============================SHIPMENT PAGE============================================//

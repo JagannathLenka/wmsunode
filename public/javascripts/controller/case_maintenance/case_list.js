@@ -43,7 +43,7 @@ wms.controller('CaseListCtrl', function ($scope, $http,  $location, $filter, $mo
     };
 
     $scope.showCase = function(show, case_id, case_detail_id) {
-        var url = baseUrl +'/'+  case_id + '.json'
+        var url = baseUrl +'/'+  case_id 
         $scope.data = {}
         $http.get(url).success(function(data) {
             $scope.case_header = data.case_header
@@ -110,7 +110,7 @@ wms.controller('CaseListCtrl', function ($scope, $http,  $location, $filter, $mo
 
     $scope.init = function() {
         console.log('case')
-        var url = baseUrl + '.json?client=' + client + '&warehouse='+ warehouse;
+        var url = baseUrl  + '?client=' + client + '&warehouse='+ warehouse;
         $http.get(url).success(function(data) {
             $scope.items = data;
             $scope.case_list = []
