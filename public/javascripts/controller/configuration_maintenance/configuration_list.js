@@ -56,7 +56,7 @@
         };
 
         $scope.showConfiguration = function(show, configuration, configuration_detail_id) {
-            var url = baseUrl + '/'+  configuration + '.json'
+            var url = baseUrl + '/'+  configuration 
             $scope.data = {}
             $http.get(url).success(function(data) {
                 $scope.configuration_header = data.configuration_header
@@ -115,7 +115,7 @@
         };
 
         $scope.init = function() {
-            var url = baseUrl + '.json?client=' + client + '&warehouse='+ warehouse;
+            var url = baseUrl + '?client=' + client + '&warehouse='+ warehouse;
             $http.get(url).success(function(data) {
                 $scope.items = data;
                 $scope.case_list = []

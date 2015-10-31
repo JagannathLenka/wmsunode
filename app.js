@@ -10,6 +10,7 @@ var users = require('./routes/users');
 var login = require('./routes/login');
 var shipment_maintenance = require('./routes/shipment_maintenance');
 var case_maintenance = require('./routes/case_maintenance');
+var configuration_maintenance = require('./routes/configuration_maintenance');
 
 var app = express();
 
@@ -35,6 +36,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/shipment_maintenance', shipment_maintenance);
 app.use('/case_maintenance', case_maintenance);
+app.use('/configuration_maintenance', configuration_maintenance);
 app.use('/login', login);
 
 // catch 404 and forward to error handler
