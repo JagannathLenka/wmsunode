@@ -105,7 +105,7 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
         var url = baseUrl + '?client=' + app_parameters.client + '&warehouse='+ app_parameters.warehouse;
         
 
-        $http.get(url, {cache:true}).success(function(data) {
+        $http.get(url).success(function(data) {
             $scope.items = data;
             $scope.shipment_list = []
 

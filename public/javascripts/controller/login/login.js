@@ -17,7 +17,7 @@ login.controller('LoginCtrl', function ($scope, $location, $localStorage, $http,
 		$localStorage.token = data['additional_info'][0]['token']
         $timeout(function(){
            window.location = '/main.html'
-        }, 100);
+        }, 1000);
     }).error(function(message){
         $scope.message = 'Invalid User Id or Password';
     });
