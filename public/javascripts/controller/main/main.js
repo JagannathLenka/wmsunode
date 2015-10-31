@@ -1,9 +1,9 @@
-wms.controller('MainCtrl', function ($scope, $http,  $location, $localStorage, $filter, $q, Auth) {
+wms.controller('MainCtrl', function ($scope, $http,  $location, $localStorage, $filter, $q, $timeout, $window, Auth) {
   
   $scope.app_parameters ={}
   $scope.header_template = {
         name: 'header_template',
-        url: '/template/main/main_header.html'
+        url: '/templates/main/main_header.html'
         };
          
   $scope.warehouses = 
@@ -22,24 +22,34 @@ wms.controller('MainCtrl', function ($scope, $http,  $location, $localStorage, $
     {value: 'WM3', text: 'WM3'}
   ]; 
   
+  console.log($localStorage);
+
+
 	if (Auth.getTokenClaims()) 
 		{
-			token = Auth.getTokenClaims()
+			token = Auth.getTokenClaims();
+        console.log($localStorage);
+
 		    if (!$localStorage.app_parameters) {
 		   		$scope.app_parameters.client = token.client;
 		    	$scope.app_parameters.updated_user = token.user_id;
 		    	$scope.app_parameters.warehouse = token.preferred_warehouse;
 		    	$scope.app_parameters.building = '';
 		    	$scope.app_parameters.channel = '';		    	
-		    	$localStorage.app_parameters = $scope.app_parameters	 
+		    	$localStorage.app_parameters = $scope.app_parameters	
+          console.log('from token');
+          console.log($scope.app_parameters);     
 		    } else {
 		   		$scope.app_parameters.client = $localStorage.app_parameters.client;
 		    	$scope.app_parameters.updated_user = $localStorage.app_parameters.user_id;
 		    	$scope.app_parameters.warehouse = $localStorage.app_parameters.preferred_warehouse;	 
 			   	$scope.app_parameters.building = '';
-		    	$scope.app_parameters.channel = '';   	
+		    	$scope.app_parameters.channel = ''; 
+          console.log('from localStorage');
+          console.log($scope.app_parameters);      	
 		    }
-	    
+      
+      console.log($scope.app_parameters);	    
 	      	    
 	}
 	
@@ -50,9 +60,11 @@ wms.controller('MainCtrl', function ($scope, $http,  $location, $localStorage, $
         
  	
  	$scope.signout = function() {
- 		delete $localStorage.token;
- 		delete $localStorage.app_parameters;
- 		window.location = '/login'
+    $localStorage.$reset();
+    $timeout(function(){
+        window.location = '/login.html'
+    }, 100);
+    console.log($localStorage);
  	}
    
         

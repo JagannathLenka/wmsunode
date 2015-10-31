@@ -11,7 +11,10 @@ var request = require('request');
 
     token = req.headers['authorization']
 
-    request(config.serviceUrl() +  '/shipment?client=WM&warehouse=WH1&authorization=' + token, function (error, response, body) {
+    client = req.query.client
+    warehouse = req.query.warehouse
+
+    request(config.serviceUrl() +  '/shipment?client='+ client + '&warehouse=' + warehouse + '&authorization=' + token, function (error, response, body) {
     if (!error && response.statusCode == 200) { 
       res.json(JSON.parse(body));
     }
@@ -19,10 +22,14 @@ var request = require('request');
 
 });
 
-router.get('/:id', function(req, response, next) {
+router.get('/:id', function(req, res, next) {
   
+  //client = req.query.client
+  //warehouse = req.query.warehouse
+  token = req.headers['authorization']
 
-  request(config.serviceUrl() + 'shipment/' +  req.params.id + '/?client=WM&warehouse=WH1&authorization=' + token, function (error, response, body) {
+  request(config.serviceUrl() + '/shipment/' +  req.params.id + '?authorization=' + token, function (error, response, body) {
+    console.log('I am here');
     if (!error && response.statusCode == 200) { 
       res.json(JSON.parse(body));
     }

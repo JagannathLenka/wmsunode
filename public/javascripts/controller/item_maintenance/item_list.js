@@ -29,16 +29,16 @@ wms.controller('ItemMasterListCtrl', function ($scope, $http,  $location, $filte
 
     $scope.header_template = {
         name: 'header_template',
-        url: '<%= asset_path('item_maintenance/item_header.html') %>'
+        url: '/templates/item_maintenance/item_header.html'
     };
 
     $scope.detail_template = {
         name: 'detail_template',
-        url: '<%= asset_path('item_maintenance/item_detail.html') %>'
+        url: '/templates/item_maintenance/item_detail.html'
     };
 
     $scope.showItem = function(show, item, item_detail_id) {
-        var url = baseUrl + '/' + item + '.json'
+        var url = baseUrl + '/' + item 
 
         $http.get(url).success(function(data) {
             $scope.item_header = data.item_header
@@ -100,7 +100,7 @@ wms.controller('ItemMasterListCtrl', function ($scope, $http,  $location, $filte
 
     $scope.init = function() {
 
-        var url = baseUrl + '.json?client=' + app_parameters.client + '&warehouse=' + app_parameters.warehouse ;
+        var url = baseUrl + '?client=' + app_parameters.client + '&warehouse=' + app_parameters.warehouse ;
 
         $http.get(url).success(function(data) {
             $scope.items = data;
